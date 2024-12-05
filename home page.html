@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversary Quiz</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #ff6f61;
+            font-size: 24px;
+        }
+
+        .question {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 15px; /* Space between the items */
+            justify-items: center; /* Center the items */
+        }
+
+        .option {
+            border: none;
+            border-radius: 50px;
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .option img {
+            width: 100%;
+            max-width: 150px; /* Adjust image size */
+            border-radius: 15px;
+        }
+
+        .option:hover {
+            transform: scale(1.05);
+        }
+
+        .result {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .result.correct {
+            color: #28a745;
+        }
+
+        .result.wrong {
+            color: #dc3545;
+        }
+
+        .next-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #28a745;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .next-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Our Anniversary Site!</h1>
+        <div class="question"></div>
+        <div class="options"></div>
+        <div class="result"></div>
+        <button class="next-button">NEXT →</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                text: "when is your birthday?",
+                options: [
+                    { text: "February 14th", correct: false },
+                    { text: "March 10th", correct: false },
+                    { text: "January 17th", correct: true },
+                    { text: "December 25th", correct: false }
+                ]
+            },
+            {
+                text: "what is your favorite colour?",
+                options: [
+                    { text: "#800080", correct: true }, // Purple
+                    { text: "#0000FF", correct: false }, // Blue
+                    { text: "#008000", correct: false }, // Green
+                    { text: "#FFFF00", correct: false }  // Yellow
+                ]
+            },
+            {
+                text: "LASTTTT ONE",
+                options: [
+                    { text: "my itty bitty baby", correct: false },
+                    { text: "Thea", correct: false },
+                    { text: "Alethea", correct: false },
+                    { text: "Midget", correct: false }
+                ]
+            },
+            {
+                text: "what is your name?",
+                options: [
+                    { text: "my itty bitty baby", correct: true },
+                    { text: "Thea", correct: false },
+                    { text: "Alethea", correct: false },
+                    { text: "Midget", correct: false }
+                ]
+            }
+        ];
+
+        const questionElement = document.querySelector('.question');
+        const optionsContainer = document.querySelector('.options');
+        const resultDiv = document.querySelector('.result');
+        const nextButton = document.querySelector('.next-button');
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            questionElement.textContent = `${currentQuestionIndex + 1}/${questions.length} ${currentQuestion.text}`;
+
+            optionsContainer.innerHTML = '';
+            currentQuestion.options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option';
+
+                if (currentQuestionIndex === 1) {
+                    // For color question, set background color
+                    button.style.backgroundColor = option.text;
+                    button.textContent = '';
+                } else if (currentQuestionIndex === 2) {
+                    // For flower question, set image
+                    const img = document.createElement('img');
+                    img.src = option.image;
+                    img.alt = option.image.split('.')[0];
+                    button.appendChild(img);
+                } else {
+                    button.textContent = option.text;
+                    button.style.backgroundColor = '#ff9a9e';
+                }
+
+                button.dataset.correct = option.correct;
+                button.addEventListener('click', selectOption);
+                optionsContainer.appendChild(button);
+            });
+
+            resultDiv.style.display = 'none';
+            nextButton.style.display = 'none';
+        }
+
+        function selectOption(event) {
+    if (!event.target.dataset.correct) return;
+
+    const isCorrect = event.target.dataset.correct === 'true';
+
+    if (isCorrect) {
+        resultDiv.textContent = 'GO MY BABY!';
+        resultDiv.className = 'result correct';
+        nextButton.style.display = 'inline-block';
+    } else {
+        resultDiv.textContent = 'you are not my baby.';
+        resultDiv.className = 'result wrong';
+    }
+
+    resultDiv.style.display = 'block';
+}
+
+        nextButton.addEventListener('click', () => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                alert('ITS MY BABY!!!! time for the game site :)');
+                // Redirect to the main site
+                window.location.href = 'main.html';
+            }
+        });
+
+        loadQuestion();
+    </script>
+</body>
+</html>

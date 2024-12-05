@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>games for my baby</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #ff6f61;
+            font-size: 32px;
+        }
+
+        .game-link {
+            display: block;
+            background-color: #ff6f61;
+            color: white;
+            font-size: 18px;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .game-link:hover {
+            transform: scale(1.05);
+            background-color: #e75a4d;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none; /* Hide the iframe initially */
+        }
+
+        .footer {
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WELCOMEEEE TO YOUR SAFE ZONE!</h1>
+        <p>since i been sooo busy with school i made you this lil website for you to use when you get bored! :)</p>
+        
+        <!-- links for you to play! -->
+        <a href="#" class="game-link" id="playHelloKitty">Play Hello Kitty Game</a>
+        <a href="#" class="game-link" id="playHelloKittyBook">Play Hello Kitty Activity Book</a>
+        <a href="#" class="game-link" id="playColojon">Play Colojon 8 Bit Drawing Game</a>
+        <a href="#" class="game-link" id="playFunColors">Play Fun Colours Drawing Game</a>
+
+        <!-- Hidden iframe for the Hello Kitty game -->
+        <iframe id="helloKittyGame" src="http://www.gamekidgame.com/hello_kitty/xmas-dinner/"></iframe>
+        <!-- Hidden iframe for the Hello Kitty Activity Book game -->
+        <iframe id="helloKittyGameBook" src="https://games.crazygames.com/en_US/hello-kitty---activity-book/index.html?v=1.313"></iframe>
+        <!-- Hidden iframe for the Colojon 8 Bit Pixel Drawing game -->
+        <iframe id="colojonGame" src="https://games.crazygames.com/en_US/colojon/index.html?v=1.313"></iframe>
+        <!-- Hidden iframe for the Fun Colours Drawing game -->
+        <iframe id="funColorsGame" src="https://games.crazygames.com/en_US/fun-colors/index.html?v=1.313"></iframe>
+
+        <div class="footer">
+            <p>i love you <3 </p>
+        </div>
+    </div>
+
+    <script>
+        // Declare variables for the iframe elements
+        var helloKittyIframe = document.getElementById('helloKittyGame');
+        var helloKittyIframeBook = document.getElementById('helloKittyGameBook');
+        var colojonIframe = document.getElementById('colojonGame');
+        var funColorsIframe = document.getElementById('funColorsGame');
+
+        // When the "Play Hello Kitty Game" button is clicked, show the Hello Kitty iframe
+        document.getElementById('playHelloKitty').addEventListener('click', function(e) {
+            e.preventDefault(); 
+            helloKittyIframe.style.display = 'block'; // Show the Hello Kitty iframe
+            helloKittyIframeBook.style.display = 'none'; // Hide the Hello Kitty Activity Book iframe
+            colojonIframe.style.display = 'none'; // Hide the Colojon game iframe
+            funColorsIframe.style.display = 'none'; // Hide the Fun Colours game iframe
+        });
+
+        // When the "Play Hello Kitty Activity Book" button is clicked, show the Activity Book iframe
+        document.getElementById('playHelloKittyBook').addEventListener('click', function(e) {
+            e.preventDefault();
+            helloKittyIframeBook.style.display = 'block'; // Show the Hello Kitty Activity Book iframe
+            helloKittyIframe.style.display = 'none'; // Hide the Hello Kitty iframe
+            colojonIframe.style.display = 'none'; // Hide the Colojon game iframe
+            funColorsIframe.style.display = 'none'; // Hide the Fun Colours game iframe
+        });
+
+        // When the "Play Colojon 8 Bit Drawing Game" button is clicked, show the Colojon game iframe
+        document.getElementById('playColojon').addEventListener('click', function(e) {
+            e.preventDefault();
+            colojonIframe.style.display = 'block'; // Show the Colojon iframe
+            helloKittyIframe.style.display = 'none'; // Hide the Hello Kitty iframe
+            helloKittyIframeBook.style.display = 'none'; // Hide the Hello Kitty Activity Book iframe
+            funColorsIframe.style.display = 'none'; // Hide the Fun Colours game iframe
+        });
+
+        // When the "Play Fun Colours Drawing Game" button is clicked, show the Fun Colours game iframe
+        document.getElementById('playFunColors').addEventListener('click', function(e) {
+            e.preventDefault();
+            funColorsIframe.style.display = 'block'; // Show the Fun Colours iframe
+            helloKittyIframe.style.display = 'none'; // Hide the Hello Kitty iframe
+            helloKittyIframeBook.style.display = 'none'; // Hide the Hello Kitty Activity Book iframe
+            colojonIframe.style.display = 'none'; // Hide the Colojon game iframe
+        });
+    </script>
+</body>
+</html>
