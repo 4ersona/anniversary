@@ -129,7 +129,7 @@
             {
                 text: "do you wanna go on a date with me :3",
                 options: [
-                    { text: "i would but you're chopped and your hbs look better </3", correct: false },
+                    { text: "i would but you're chopped and your hbs look better", correct: false },
                     { text: "of course my sexy man", correct: true },
                 ]
             }
@@ -184,6 +184,14 @@
                 resultDiv.textContent = 'YOUPIE!';
                 resultDiv.className = 'result correct';
                 nextButton.style.display = 'inline-block';
+
+                // Show the popup with the address
+                setTimeout(function() {
+                    alert("You've earned a meal with your bebi at Le Saveurs des Continents à Brossard \n\n" +
+                        "7200 Boulevard Taschereau,\n" +
+                        "Place Portobello, Brossard, Québec\n" +
+                        "J4W 1N1");
+                }, 1000); // Wait 1 second before showing the popup
             } else {
                 resultDiv.textContent = 'say no hoe.';
                 resultDiv.className = 'result wrong';
