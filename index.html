@@ -150,22 +150,8 @@
             currentQuestion.options.forEach(option => {
                 const button = document.createElement('button');
                 button.className = 'option';
-
-                if (currentQuestionIndex === 1) {
-                    // For color question, set background color
-                    button.style.backgroundColor = option.text;
-                    button.textContent = '';
-                } else if (currentQuestionIndex === 2) {
-                    // For flower question, set image
-                    const img = document.createElement('img');
-                    img.src = option.image;
-                    img.alt = option.image.split('.')[0];
-                    button.appendChild(img);
-                } else {
-                    button.textContent = option.text;
-                    button.style.backgroundColor = '#ff9a9e';
-                }
-
+                button.textContent = option.text;
+                button.style.backgroundColor = '#ff9a9e';
                 button.dataset.correct = option.correct;
                 button.addEventListener('click', selectOption);
                 optionsContainer.appendChild(button);
@@ -176,22 +162,12 @@
         }
 
         function selectOption(event) {
-            if (!event.target.dataset.correct) return;
-
             const isCorrect = event.target.dataset.correct === 'true';
 
             if (isCorrect) {
                 resultDiv.textContent = 'YOUPIE!';
                 resultDiv.className = 'result correct';
                 nextButton.style.display = 'inline-block';
-
-                // Show the popup with the address
-                setTimeout(function() {
-                    alert("You've earned a meal with your bebi at Le Saveurs des Continents à Brossard \n\n" +
-                        "7200 Boulevard Taschereau,\n" +
-                        "Place Portobello, Brossard, Québec\n" +
-                        "J4W 1N1");
-                }, 1000); // Wait 1 second before showing the popup
             } else {
                 resultDiv.textContent = 'say no hoe.';
                 resultDiv.className = 'result wrong';
@@ -204,6 +180,11 @@
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
                 loadQuestion();
+            } else {
+                // Popup after the second question is answered correctly
+                if (currentQuestionIndex === questions.length) {
+                    alert("You've earned a meal with your bebi at Le Saveurs des Continents à Brossard\n\n7200 Boulevard Taschereau,\nPlace Portobello, Brossard, Québec\nJ4W 1N1");
+                }
             }
         });
 
