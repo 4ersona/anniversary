@@ -176,30 +176,26 @@
         }
 
         function selectOption(event) {
-    if (!event.target.dataset.correct) return;
+            if (!event.target.dataset.correct) return;
 
-    const isCorrect = event.target.dataset.correct === 'true';
+            const isCorrect = event.target.dataset.correct === 'true';
 
-    if (isCorrect) {
-        resultDiv.textContent = 'YOUPIE!';
-        resultDiv.className = 'result correct';
-        nextButton.style.display = 'inline-block';
-    } else {
-        resultDiv.textContent = 'say no hoe.';
-        resultDiv.className = 'result wrong';
-    }
+            if (isCorrect) {
+                resultDiv.textContent = 'YOUPIE!';
+                resultDiv.className = 'result correct';
+                nextButton.style.display = 'inline-block';
+            } else {
+                resultDiv.textContent = 'say no hoe.';
+                resultDiv.className = 'result wrong';
+            }
 
-    resultDiv.style.display = 'block';
-}
+            resultDiv.style.display = 'block';
+        }
 
         nextButton.addEventListener('click', () => {
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
                 loadQuestion();
-            } else {
-                alert('ITS MY BABY!!!! time for the game site :)');
-                // Redirect to the main site
-                window.location.href = 'main.html';
             }
         });
 
